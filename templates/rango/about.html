@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>Rango_about</title>
+</head>
+<body>
+	<h1>Rango says:</h1>
+	<p>This tutorial has been put together by {{ name }}</p>
+	<p>BTW, this is my girlfriend and future wife, haha...</p>
+	<img src="{% static 'images/about.jpg' %}">
+	<p>This is the cat we raise together!</p>
+	<img src="{{ MEDIA_URL }}cat.jpg">
+</body>
+</html>
