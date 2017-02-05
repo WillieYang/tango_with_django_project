@@ -1,4 +1,4 @@
-from django import forms
+ufrom django import forms
 from rango.models import Category, Page
 
 class CategoryForm(forms.ModelForm):
@@ -22,3 +22,12 @@ class PageForm(forms.ModelForm):
 	class Meta:
 		model = Page
 		exclude = ('category',)
+
+	def clean(self):
+		cleaned_data = self.cleaned_data
+		url = cleaned_data.get('url')
+		if url and not url.startwith('http://'):
+			url = 'http://' + url
+			cleaned_data['url'] = url
+
+			return cleaned_data	
