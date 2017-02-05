@@ -1,4 +1,4 @@
-ufrom django import forms
+from django import forms
 from rango.models import Category, Page
 
 class CategoryForm(forms.ModelForm):
