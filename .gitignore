@@ -1,3 +1,4 @@
 # Logs and databases #
 ######################
 *.sql
+*.pyc
