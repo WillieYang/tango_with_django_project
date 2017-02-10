@@ -13,7 +13,11 @@
 {% endblock %}
 		
 {% block body_block %}
-	<h2>hey there parterner!</h2>		
+{% if user.is_authenticated %}
+	Howdy {{ user.username }}
+{% else %}
+	hey there parterner!
+{% endif %}	
 	<p>The five most liked categories:</p>
 	<div>
 	{% if categories %}
@@ -41,9 +45,5 @@
 	{% else %}
 		<strong>There is no page present.</strong>
 	{% endif %}
-	</div>
-	<div>
-		<img src="{% static 'images/rango.jpg' %}"
-			 alt="Picture of Rango" />
 	</div>
 {% endblock %}
