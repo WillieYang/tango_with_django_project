@@ -3,14 +3,6 @@
 
 {% block title_block %}
 {% endblock %}
-
-{% block link_block %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-{% endblock %}
-	
-{% block script_block %}
-	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-{% endblock %}
 		
 {% block body_block %}
 {% if user.is_authenticated %}
