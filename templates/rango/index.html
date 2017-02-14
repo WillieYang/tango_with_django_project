@@ -5,38 +5,43 @@
 {% endblock %}
 		
 {% block body_block %}
-{% if user.is_authenticated %}
-	Howdy {{ user.username }}
-{% else %}
-	hey there parterner!
-{% endif %}	
-	<p>Visits: {{ visits }}</p>
-	<p>The five most liked categories:</p>
-	<div>
-	{% if categories %}
-	<ul>
-		{% for category in categories %}
-			<li>
-				<a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
-			</li>
-		{% endfor %}
-	</ul>
-	{% else %}
-		<strong>There are no categories present.</strong>
-	{% endif %}
-	</div>
-	<p>The five most viewed pages:</p>
-	<div>
-	{% if pages %}
-	<ul>
-		{% for page in pages %}
-			<li>
-				<a href="{{ page.url }}">{{ page.title }}</a>
-			</li>
-		{% endfor %}
-	</ul>
-	{% else %}
-		<strong>There is no page present.</strong>
-	{% endif %}
+	<div style="background: #F5F5DC !important" class="jumbotron">
+		<h1 class="display-3">Rango says:</h1>
+		{% if user.is_authenticated %}
+			<h1>Hello: {{ user.username }}</h1>
+		{% else %}
+			<h1>Hi visitor, wilcome!</h1>
+		{% endif %}
+	</div>	
+	<p class="text-info">Visits: {{ visits }}</p>
+	<div class="row marketing">
+		<div class="col-lg-6">
+			<p class="text-success">The Five Most Liked Categories:</p>
+			{% if categories %}
+			<ul>
+				{% for category in categories %}
+					<li>
+						<a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+				<strong>There Are No Categories Present.</strong>
+			{% endif %}
+		</div>
+		<div class="col-lg-6">
+			<p class="text-success">The Five Most Viewed Pages:</p>
+			{% if pages %}
+			<ul>
+				{% for page in pages %}
+					<li>
+						<a href="{{ page.url }}">{{ page.title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+				<strong>There is No Page Present.</strong>
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}

@@ -5,12 +5,18 @@
 {% endblock %}
 
 {% block body_block %}
-	<h1>Login</h1>
-	<form method="post" action=".">
+<link rel="stylesheet" type="text/css" href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css">
+	<div class="jumbotron">
+		<h1 class="display-3">Login</h1>
+	</div>
+	<form class="form-signin" role="form" method="post" action=".">
 		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" name="login" value="Login">
-		<input type="hidden" name="next" value="{{ next }}">
+		<h2 class="form-signin-heading">Sing in:</h2>
+		<label for="inputUsername" class="sr-only">Username:</label>
+		<input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
+		<label for="inputPassword" class="sr-only">Password:</label>
+		<input type="text" name="password" id="id_password" class="form-control" placeholder="Password">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>	
 	</form>
 	<p>
 		Not a member?
