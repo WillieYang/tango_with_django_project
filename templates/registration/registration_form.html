@@ -5,10 +5,30 @@
 {% endblock %}
 
 {% block body_block %}
-	<h1>Register Here</h1>
-	<form method="post" action=".">
+<h2 class="form-sing-heading">Sign Up Here</h2>
+
+	<form role="form" method="post" action=".">
 		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" name="register" value="register">
+		<p class="required">
+			<label class="required" id="id_username">Username:</label>
+			<input type="text" name="username" id="id_username" maxlength="30" class="form-control">
+			<span class="helptext">Required. 30 characters or fewer. Letter, digits and@/./+/- only.</span>
+		</p>
+		<p class="required">
+			<label class="required" id="id_email">E-mail:</label>
+			<input type="text" name="email" id="id_email" maxlength="30" class="form-control">
+		</p>
+		<p class="required">
+			<label class="required" id="id_password1">Password:</label>	
+			<input type="text" name="password1" id="id_password1" maxlength="30" class="form-control">
+		</p>
+		<p class="required">
+			<label class="required" id="id_password2">Confirm Password:</label>
+			<input type="text" name="password2" id="id_password2" maxlength="30" class="form-control">
+			<span class="helptext">
+				Enter the same password as before, for verification.
+			</span>	
+		</p>
+		<button type="submit" class="btn btn-success">Sign Up</button>
 	</form>
 {% endblock %}
