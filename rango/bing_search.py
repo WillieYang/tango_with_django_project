@@ -41,7 +41,7 @@ def run_query(search_terms):
 
 	password_mgr.add_password(None, search_url, username, bing_api_key)
 
-	result = []
+	results = []
 
 	try:
 		handler = urllib2.HTTPBasicAuthHandler(password_mgr)
@@ -57,6 +57,17 @@ def run_query(search_terms):
 							'link': result['Url'],
 							'summary': result['Description']})
 	except:
-		print("Error when querying the Bing API0")
+		print("Error when querying the Bing API")
 
 	return results
+
+def main():
+	query = raw_input('Please enter the query:')
+	results = run_query(query)
+	for result in results:
+		print('title', result.title)
+		print('link', result.link)
+		print('summary', result.summary)
+
+if __name__ == '__main__':
+	main()
