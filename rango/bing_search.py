@@ -57,7 +57,7 @@ def run_query(search_terms):
 							'link': result['Url'],
 							'summary': result['Description']})
 	except:
-		print("Error when querying the Bing API")
+		print("Error when querying the Bing API0")
 
 	return results
 
