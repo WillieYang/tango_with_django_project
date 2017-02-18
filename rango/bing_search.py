@@ -22,12 +22,10 @@ def run_query(search_terms):
 	search_service = PyMsCognitiveWebSearch(bing_api_key, search_terms)
 	first_fifty_result = search_service.search(limit=50, format='json')	
 
-	print(first_fifty_result[0].title)
-	print(first_fifty_result[0].display_url)
-	print(first_fifty_result[0].snippet)
+	# print(first_fifty_result[0].title)
+	# print(first_fifty_result[0].display_url)
+	# print(first_fifty_result[0].snippet)
 	return first_fifty_result
-
-
 
 def main():
 	query = raw_input('Please enter the query:')

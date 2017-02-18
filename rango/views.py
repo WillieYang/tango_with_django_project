@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from rango.bing_search import run_query
 
 def index(request):
 	request.session.set_test_cookie()
@@ -163,3 +164,15 @@ def visitor_cookie_handler(request):
 		visits = 1
 		request.session['last_visit'] = last_visit_cookie
 	request.session['visits'] = visits 
+
+def search(request):
+	result_list = []
+	context_dict = {}
+
+	if request.method == 'POST':
+		query = request.POST['query'].strip()
+		print(query)
+		if query:
+			result_list = run_query(query)
+		context_dict = {"result_list":result_list, "query_text":query}
+	return render(request, 'rango/search.html', context=context_dict)
