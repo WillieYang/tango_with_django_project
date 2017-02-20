@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
@@ -135,7 +135,6 @@ def user_login(request):
 @login_required
 def restricted(request):
 	return render(request, 'rango/restricted.html', {})
-	return HttpResponse("")
 
 @login_required
 def user_logout(request):
@@ -176,3 +175,18 @@ def search(request):
 			result_list = run_query(query)
 		context_dict = {"result_list":result_list, "query_text":query}
 	return render(request, 'rango/search.html', context=context_dict)
+
+def track_url(request, page_id):
+		# page_id = None
+		# if request.method == 'GET':
+		# 	if 'page_id' in request.GET:
+		# 		page_id = request.GET['page_id']
+	try:
+		page = Page.objects.get(id=page_id)
+		page.views += 1
+		url = page.url
+		page.save()
+	except:
+		HttpResponseRedirect(reverse('rango:index'))
+		
+	return redirect(url)

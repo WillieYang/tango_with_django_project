@@ -13,7 +13,7 @@
 			<h1>Hi visitor, wilcome!</h1>
 		{% endif %}
 	</div>	
-	<p class="text-info">Visits: {{ visits }}</p>
+	<p class="text-danger">Visits: {{ visits }}</p>
 	<div class="row marketing">
 		<div class="col-lg-6">
 			<p class="text-success">The Five Most Liked Categories:</p>
@@ -35,7 +35,7 @@
 			<ul>
 				{% for page in pages %}
 					<li>
-						<a href="{{ page.url }}">{{ page.title }}</a>
+						<a href="{% url 'rango:goto' page.id %}">{{ page.title }}</a>
 					</li>
 				{% endfor %}
 			</ul>
