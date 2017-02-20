@@ -32,6 +32,15 @@ def about(request):
 
 def show_category(request, category_name_slug):
 	context_dict = {}
+	result_list = []
+
+	if request.method == 'POST':
+		query = request.POST['query'].strip()
+		print(query)
+		if query:
+			result_list = run_query(query)
+		context_dict['result_list'] = result_list
+		context_dict['query_text'] = query
 
 	try:
 		category = Category.objects.get(slug=category_name_slug)
@@ -42,7 +51,8 @@ def show_category(request, category_name_slug):
 		context_dict['pages'] = None
 		context_dict['category'] = None
 
-	return render(request, 'rango/category.html', context_dict)
+
+	return render(request, 'rango/category.html', context=context_dict)
 
 @login_required
 def add_category(request):
@@ -164,17 +174,17 @@ def visitor_cookie_handler(request):
 		request.session['last_visit'] = last_visit_cookie
 	request.session['visits'] = visits 
 
-def search(request):
-	result_list = []
-	context_dict = {}
+# def search(request):
+# 	result_list = []
+# 	context_dict = {}
 
-	if request.method == 'POST':
-		query = request.POST['query'].strip()
-		print(query)
-		if query:
-			result_list = run_query(query)
-		context_dict = {"result_list":result_list, "query_text":query}
-	return render(request, 'rango/search.html', context=context_dict)
+# 	if request.method == 'POST':
+# 		query = request.POST['query'].strip()
+# 		print(query)
+# 		if query:
+# 			result_list = run_query(query)
+# 		context_dict = {"result_list":result_list, "query_text":query}
+# 	return render(request, 'rango/search.html', context=context_dict)
 
 def track_url(request, page_id):
 		# page_id = None
