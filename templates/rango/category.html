@@ -22,33 +22,40 @@
 	{% endif %}
 	</div>
 	{% if user.is_authenticated %}
-		<a href="{% url 'rango:add_page' category.slug %}">Add a new page:</a>
+		<a class="btn btn-primary" href="{% url 'rango:add_page' category.slug %}">Add a new page</a>
 	{% endif %}
 
+	{% if user.is_authenticated %}
+	{% if category %}
 	<div>
-	<br>
-	<form class="form-inline" method="post" action="{% url 'rango: show_category' category.slug %}">
-		{% csrf_token %}
-		<div class="form-group">
-			<input class="form-control" type="text" name="query" size="50" id="query" placeholder="{{ query_text }}">
-		</div>
-		<button class="btn btn-success" type="submit" name="submit" value="Search">Search</button>
-	</form>
-
-	<div>
-		{% if result_list %}
-		<h3>Results</h3>
-		{% for result in result_list %}
-			<div class="list-group-item clearfix">
-				<h5 class="list-group-item-heading">
-					<a class="text-primary" href="{{ result.url }}">{{ result.title }}</a>
-				</h5>
-				<p class="list-group-item-text">
-					{{ result.snippet }}
-				</p>
+		<br>
+		<form class="form-inline" method="post" action="{% url 'rango:show_category' category.slug %}">
+			{% csrf_token %}
+			<div class="form-group">
+				<input class="form-control" type="text" name="query" size="50" id="query" placeholder="{{ query_text }}">
 			</div>
-		{% endfor %}
+			<button class="btn btn-success" type="submit" name="submit" value="Search">Search</button>
+		</form>
 		{% endif %}
+
+		<div>
+			{% if result_list %}
+			<br>
+			<h3 class="text-success">Results :</h3>
+			<br>
+			{% for result in result_list %}
+				<div class="list-group-item clearfix">
+					<h5 class="list-group-item-heading">
+						<a class="text-primary" href="{{ result.url }}">{{ result.title }}</a>
+					</h5>
+					<p class="list-group-item-text">
+						{{ result.snippet }}
+					</p>
+				</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+	{% endif %}
 	</div>
-</div>
+
 {% endblock %}
