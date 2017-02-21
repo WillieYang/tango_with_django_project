@@ -200,3 +200,24 @@ def track_url(request, page_id):
 		HttpResponseRedirect(reverse('rango:index'))
 		
 	return redirect(url)
+
+@login_required
+def register_profile(request):
+	profile_form = UserProfileForm()
+
+	if request.method == 'POST':
+		profile_form = UserProfileForm(request.POST, request.FILES)
+
+		if profile_form.is_valid():
+			profile = profile_form.save(commit=False)
+			profile.user = request.user
+			profile.save()
+			
+			return redirect('rango:index')
+		else:
+			print(profile_form.errors)
+
+	context_dict = {'profile_form':profile_form}
+
+	return render(request, 'rango/profile_registration.html',
+							context=context_dict)
