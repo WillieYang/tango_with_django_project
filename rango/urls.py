@@ -12,4 +12,5 @@ urlpatterns = [
 	url(r'^restricted/$', views.restricted, name='restricted'),
 	url(r'^goto/(?P<page_id>\d+)/$', views.track_url, name='goto'),
 	url(r'^profile_registration/$', views.register_profile, name='register_profile'),
+	url(r'^update_profile/(?P<username>[\w\-]+)/$', views.profile, name='update_profile'),
 ]
