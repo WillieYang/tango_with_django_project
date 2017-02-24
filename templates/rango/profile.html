@@ -13,10 +13,10 @@
 		alt="{{selecteduser.username}}">
 	<br>
 	<div>
-		{{ if selecteduser.username == user.username }}
+		{% if selecteduser.username == user.username %}
 			<form method="post" action="." enctype="multipart/form-data">
 				{% csrf_token %}
-				{{ 	form.asp }}
+				{{ 	form.as_p }}
 				<button type="submit">Update</button>
 			</form>
 		{% else %}
