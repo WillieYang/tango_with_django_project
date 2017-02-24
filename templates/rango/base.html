@@ -43,8 +43,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'auth_password_change' %}">Password Change</a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'rango:update_profile' user.username %}">Update Profile</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'rango:list_profile' %}">List User Profiles</a>
+          </li>
           </li>
           {% else %}
           <li class="nav-item">

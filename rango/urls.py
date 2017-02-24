@@ -13,4 +13,5 @@ urlpatterns = [
 	url(r'^goto/(?P<page_id>\d+)/$', views.track_url, name='goto'),
 	url(r'^profile_registration/$', views.register_profile, name='register_profile'),
 	url(r'^update_profile/(?P<username>[\w\-]+)/$', views.profile, name='update_profile'),
+	url(r'^list_profile/$', views.list_profile, name='list_profile'),
 ]
