@@ -6,13 +6,19 @@
 {% endblock %}
 
 {% block body_block %}
-	<h3 class="text-success">This is all the User Profiles:</h3>
+	<h3 class="text-primary">This is all the User Profiles:</h3>
 		<div class="panel">
 			{% if list_profile %}
 						{% for listuser in list_profile %}
 						<div class="list-group-item">
-							<h4 class="list-group-item-heading">
-								<a href="{% url 'rango:update_profile' listuser.user.username %}">{{listuser.user.username}}</a>
+							{% if listuser.picture %}
+							<img src="{{MEDIA_URL}}{{listuser.picture}}" width="60" height="60" alt="{{ listuser.user.username }}" class="col-xs-4">
+							{% else %}
+							<img src="http://images2.itechpost.com/data/images/full/27457/gintama-anime-series-gets-new-season-manga-teases-final-arc.png" width="60" height="60" alt="listuser.user.username">
+							{% endif %}
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<h4 class="list-group-item-heading col-xs-4">
+								<a class="col-xs-4" href="{% url 'rango:update_profile' listuser.user.username %}">{{listuser.user.username}}</a>
 							</h4>
 						</div>
 					{% endfor %}
