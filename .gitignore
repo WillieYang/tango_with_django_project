@@ -1,5 +1,5 @@
 # Logs and databases #
 ######################
-*.sql
+*.sqlite3
 *.pyc
 *.key
